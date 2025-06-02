@@ -4,7 +4,7 @@
   "service": "dev",
   "workspaceFolder": "/workspace",
   "forwardPorts": [8000, 27017],
-  "postCreateCommand": "pip install -r requirements.txt",
+  "postCreateCommand": "poetry install",
   "customizations": {
     "vscode": {
       "extensions": [
