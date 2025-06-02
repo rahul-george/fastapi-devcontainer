@@ -1,15 +1,15 @@
-# Use an official Python base image
+# Base image
 FROM python:3.11-slim
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install pip dependencies
+COPY requirements.txt /workspace/requirements.txt
+RUN pip install --upgrade pip && pip install -r /workspace/requirements.txt
 
 # Set working directory
 WORKDIR /workspace
-
-# Install FastAPI and Uvicorn
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Install common dev tools (optional)
-RUN pip install black isort mypy
-
-# Default command
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

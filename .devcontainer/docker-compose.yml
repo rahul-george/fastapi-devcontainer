@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  dev:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workspace:cached
+    command: sleep infinity
+    depends_on:
+      - mongo
+    networks:
+      - dev-network
+
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - dev-network
+
+volumes:
+  mongo-data:
+
+networks:
+  dev-network:
