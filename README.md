@@ -1,2 +1,2 @@
 # fastapi-devcontainer
-dev container repo with fastapi
+Basic devcontainer with fastapi and minimal python extensions
